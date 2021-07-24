@@ -15,7 +15,7 @@ func (s *dObject) Request() {
 	log.Println("request", s.i)
 }
 
-func TestMonitoring(t *testing.T) {
+func TestRequest(t *testing.T) {
 	objList := []Object{
 		&HttpGet{
 			URL: "https://gm6.ru",
@@ -28,4 +28,9 @@ func TestMonitoring(t *testing.T) {
 		log.Println("Canceled...")
 	}()
 	time.Sleep(time.Minute * 2)
+}
+
+func TestMonitoring(t *testing.T) {
+	m, err := FromConfig(context.Background(), "config.cfg")
+	log.Println(m, err)
 }

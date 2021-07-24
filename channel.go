@@ -1,39 +1,29 @@
 package monitoring
 
 import (
-	"fmt"
+	"sync"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/fcg-xvii/go-tools/json"
 )
+
+func init() {
+	RegisterChannelType("telegram", ConstructorChannelTelegram)
+}
+
+type ChannelConstructor func(m json.Map) (Channel, error)
+
+var (
+	channelTypes = new(sync.Map)
+)
+
+func RegisterChannelType(typeName string, constructor ChannelConstructor) {
+	channelTypes.Store(typeName, constructor)
+}
+
+func RemoveChannelType(typeName string) {
+	channelTypes.Delete(typeName)
+}
 
 type Channel interface {
 	Log(title, message string)
-}
-
-// channel telegram
-
-type ChannelTelegram struct {
-	botAPI *tgbotapi.BotAPI
-	ChatID int64
-}
-
-func (s *ChannelTelegram) Log(title, message string) {
-	chatMessage := fmt.Sprintf(`<b>%v</b>\n%v`, title, message)
-	tMsg := tgbotapi.NewMessage(s.ChatID, chatMessage)
-	s.botAPI.Send(tMsg)
-}
-
-func (s *ChannelTelegram) JSONField(fieldName string) (ptr interface{}, err error) {
-	var token string
-	switch fieldName {
-	case "token":
-		ptr = &token
-	case "chat_id":
-		ptr = &s.ChatID
-	}
-	return
-}
-
-func (s *ChannelTelegram) JSONFinish() (err error) {
-	if 
 }
