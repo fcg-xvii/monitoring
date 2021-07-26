@@ -18,7 +18,7 @@ func (s *dObject) Request() {
 func TestRequest(t *testing.T) {
 	objList := []Object{
 		&HttpGet{
-			URL: "https://gm6.ru",
+			url: "https://gm6.ru",
 		},
 	}
 	m := New(context.Background(), objList, time.Second*10)
@@ -33,4 +33,5 @@ func TestRequest(t *testing.T) {
 func TestMonitoring(t *testing.T) {
 	m, err := FromConfig(context.Background(), "config.cfg")
 	log.Println(m, err)
+	time.Sleep(time.Minute * 10)
 }

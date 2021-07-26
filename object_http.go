@@ -2,7 +2,6 @@ package monitoring
 
 import (
 	"errors"
-	"log"
 	"net/http"
 
 	"github.com/fcg-xvii/go-tools/json"
@@ -14,17 +13,25 @@ func ConstructorObjectHttpGet(m json.Map) (res Object, err error) {
 		err = errors.New("HttpGet constructor error :: url is not defined")
 		return
 	}
+	channels, err := ChannelsFromList(m.Slice("channels", nil))
+	if err != nil {
+		return nil, err
+	}
 	res = &HttpGet{
-		URL: url,
+		url:      url,
+		channels: channels,
 	}
 	return
 }
 
 type HttpGet struct {
-	URL string
+	url      string
+	channels []Channel
 }
 
 func (s *HttpGet) Request() {
-	resp, err := http.Get(s.URL)
-	log.Println(resp, err)
+	_, err := http.Get(s.url)
+	for _, ch := range s.channels {
+		ch.Log("ALERT!!!", err.Error())
+	}
 }

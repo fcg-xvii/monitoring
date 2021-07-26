@@ -14,7 +14,7 @@ func ConstructorChannelTelegram(m json.Map) (res Channel, err error) {
 		err = errors.New("Constructor channel telegram error :: [token] is not defined")
 		return
 	}
-	chatID := m.Int("token", 0)
+	chatID := m.Int("chat_id", 0)
 	if chatID == 0 {
 		err = errors.New("Constructor channel telegram error :: [chat_id] is not defined")
 		return
@@ -34,7 +34,7 @@ type ChannelTelegram struct {
 }
 
 func (s *ChannelTelegram) Log(title, message string) {
-	chatMessage := fmt.Sprintf(`<b>%v</b>\n%v`, title, message)
+	chatMessage := fmt.Sprintf(`%v :: %v`, title, message)
 	tMsg := tgbotapi.NewMessage(s.chatID, chatMessage)
 	s.api.Send(tMsg)
 }

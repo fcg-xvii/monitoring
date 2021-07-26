@@ -9,6 +9,11 @@ import (
 	"github.com/fcg-xvii/go-tools/json"
 )
 
+/*
+{"ok":true,"result":[{"update_id":149690937,
+"channel_post":{"message_id":235,"sender_chat":{"id":-1001269290416,"title":"\u0417\u0430\u043f\u0438\u0441\u043a\u0438 \u0424\u043b\u0438\u043d\u0442\u0430","type":"channel"},"chat":{"id":-1001269290416,"title":"\u0417\u0430\u043f\u0438\u0441\u043a\u0438 \u0424\u043b\u0438\u043d\u0442\u0430","type":"channel"},"date":1627307422,"text":"@SubaruMonitoringBot 123","entities":[{"offset":0,"length":20,"type":"mention"}]}}]}
+*/
+
 func New(ctx context.Context, objects []Object, interval time.Duration) *Monitoring {
 	cctx, cancel := context.WithCancel(ctx)
 	l := concurrent.NewList()
@@ -26,17 +31,18 @@ func New(ctx context.Context, objects []Object, interval time.Duration) *Monitor
 }
 
 func FromMap(ctx context.Context, m json.Map) *Monitoring {
-	items := m.Slice("monitoring", nil)
+	objects, err := ObjectsFromList(m.Slice("monitoring", nil))
+	if err != nil {
+		log.Println(err)
+	}
+	cctx, cancel := context.WithCancel(ctx)
 	res := &Monitoring{
 		mInterval: time.Minute * time.Duration(m.Int("interval", 5)),
-		objects:   concurrent.NewList(),
+		objects:   objects,
+		ctx:       cctx,
+		cancel:    cancel,
 	}
-	for _, item := range items {
-		if iMap, check := item.(map[string]interface{}); check {
-			mm := json.Map(iMap)
-			log.Println("mm", mm)
-		}
-	}
+	res.start()
 	return res
 }
 
