@@ -37,6 +37,10 @@ func ChannelsFromList(iface interface{}) ([]Channel, error) {
 			continue
 		}
 		res = append(res, ch)
+		if mm.Bool("test", false) {
+			log.Println("Channel constructor:: test message sended")
+			ch.Log("Monitoring started", "test channel message...")
+		}
 	}
 	if len(res) == 0 {
 		return nil, errors.New("Channels constructor error :: result list is empty")
