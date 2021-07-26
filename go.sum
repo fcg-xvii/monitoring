@@ -1,0 +1,13 @@
+github.com/fcg-xvii/go-tools v0.0.0-20210724084526-19889c9433c4 h1:SNZj8kVC9mmVfMLnPsK29+tbGjPMInvBVipa2m7gs/k=
+github.com/fcg-xvii/go-tools v0.0.0-20210724084526-19889c9433c4/go.mod h1:iqeLyAqB+RN0zxQTNk7yWI9dzy09Oc6yUk1m1vkdws0=
+github.com/fcg-xvii/go-tools v0.0.0-20210724151639-bf080e8ec684 h1:WIGDENoPnwlOXQ+EwbND2HRFeLF2kBJJKejoUM3ovHU=
+github.com/fcg-xvii/go-tools v0.0.0-20210724151639-bf080e8ec684/go.mod h1:iqeLyAqB+RN0zxQTNk7yWI9dzy09Oc6yUk1m1vkdws0=
+github.com/fcg-xvii/go-tools v0.0.0-20210725220154-8135ff65bf2f h1:xLHTAaTb5BIAKJnd/htGzkDO5mF6b09T9bQyAQN/Ka4=
+github.com/fcg-xvii/go-tools v0.0.0-20210725220154-8135ff65bf2f/go.mod h1:iqeLyAqB+RN0zxQTNk7yWI9dzy09Oc6yUk1m1vkdws0=
+github.com/fcg-xvii/go-tools v0.0.0-20210725221359-597a6da77a03 h1:xumuxIjleVGikuhznKogLFo98t3j3fOisMpaEy7tuZA=
+github.com/fcg-xvii/go-tools v0.0.0-20210725221359-597a6da77a03/go.mod h1:iqeLyAqB+RN0zxQTNk7yWI9dzy09Oc6yUk1m1vkdws0=
+github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible h1:2cauKuaELYAEARXRkq2LrJ0yDDv1rW7+wrTEdVL3uaU=
+github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible/go.mod h1:qf9acutJ8cwBUhm1bqgz6Bei9/C/c93FPDljKWwsOgM=
+github.com/lib/pq v1.3.0/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
+github.com/technoweenie/multipartstreamer v1.0.1 h1:XRztA5MXiR1TIRHxH2uNxXxaIkKQDeX7m2XsSOlQEnM=
+github.com/technoweenie/multipartstreamer v1.0.1/go.mod h1:jNVxdtShOxzAsukZwTSw6MDx5eUJoiEBsSvzDU9uzog=
