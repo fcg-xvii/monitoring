@@ -30,8 +30,9 @@ type HttpGet struct {
 }
 
 func (s *HttpGet) Request() {
-	_, err := http.Get(s.url)
-	for _, ch := range s.channels {
-		ch.Log("ALERT!!!", err.Error())
+	if _, err := http.Get(s.url); err != nil {
+		for _, ch := range s.channels {
+			ch.Log("ALERT!!!", err.Error())
+		}
 	}
 }
